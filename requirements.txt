@@ -1,0 +1,7 @@
+numpy
+scipy
+torch
+pyyaml
+matplotlib
+# The 2D advection-diffusion simulator (simulators/simulate_advecdiff.R) additionally
+# requires an R installation. The 5D Darcy simulator (simulate_darcy.py) is pure Python.
