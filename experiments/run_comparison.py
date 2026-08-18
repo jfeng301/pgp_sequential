@@ -49,12 +49,12 @@ _STOP_EVENT = None  # Set to threading.Event() in main()
 # ====================== CONFIG ======================
 EXP_DIR    = pathlib.Path(__file__).resolve().parent
 PRECOMP    = EXP_DIR / "precomp.rds"
-SIM_R      = ROOT / "r_scripts" / "simulate_advecdiff.R"
-SIM_PRECOMP_R = ROOT / "r_scripts" / "simulate_precompute.R"
+SIM_R      = ROOT / "simulators" / "simulate_advecdiff.R"
+SIM_PRECOMP_R = ROOT / "simulators" / "simulate_precompute.R"
 RSCRIPT    = os.environ.get("RSCRIPT_BIN") or "Rscript"
 
 # Greedy CG R scripts
-R_ADJ      = ROOT / "r_scripts" / "fom_rom_adjoint.R"
+R_ADJ      = ROOT / "simulators" / "fom_rom_adjoint.R"
 
 PROBLEM    = "advecdiff"  # "advecdiff" or "darcy"
 DX_BOUNDS  = (1e-4, 1e-2)
@@ -143,7 +143,7 @@ def simulate(params, snap_dir):
         return out
 
     if PROBLEM == "darcy":
-        from r_scripts.simulate_darcy import solve_darcy_transient
+        from simulators.simulate_darcy import solve_darcy_transient
         U = solve_darcy_transient(params, KL_BASIS, T_final=DARCY_T_FINAL, dt=DARCY_DT)
         np.savetxt(str(out), U, delimiter=",")
     else:
